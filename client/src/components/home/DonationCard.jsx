@@ -33,6 +33,7 @@ const DonationCard = ({extraData,itemNum,imagesrc,price,title,handler,delay=0}) 
         useramount:amount,
         id:extraData._id
       })
+      console.log(res.data);
       if(res.data.flag){
         const options = {
           key: "rzp_test_qFggyDGcfAObXr", 

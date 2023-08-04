@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 function Nav() {
 
     const navigate = useNavigate();
+    // const [newnavigate,s]
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -29,8 +30,8 @@ function Nav() {
         
     };
 
-    const handleMenuOpen = () => {
-
+    const newnavigate = () => {
+        navigate('/admin')
     }
 
     return (
@@ -68,7 +69,7 @@ function Nav() {
                         size="large"
                         edge="end"
                         aria-label="account of current user"
-
+                        onClick={newnavigate}
                         aria-haspopup="true"
 
                         color="inherit"

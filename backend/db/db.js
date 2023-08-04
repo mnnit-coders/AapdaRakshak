@@ -1,6 +1,6 @@
 const mongoose =require('mongoose');
 require('dotenv').config('../')
-const pool=mongoose.connect("mongodb://localhost:27017/aptguard",{
+const pool=mongoose.connect("mongodb+srv://1234:1234@cluster0.0ilq2hx.mongodb.net/",{
 // const pool=mongoose.connect(process.env.MONGO_URL,{
     connectTimeoutMS: 10000,
     useNewUrlParser: true 
