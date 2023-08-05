@@ -14,6 +14,7 @@ async function loginadmin(req,res){
             let result=await bcrypt.compare(password,data.password)
             if(result){
                 let token=jwt.sign({userid:data['_id']},process.env.jwt_key_admin);
+                // console.log(token,data['_id']);
                 return res.status(200).json({
                     message:'Successfully logged in',
                     token,
