@@ -1,8 +1,38 @@
-import React from 'react'
-import Page1 from "../../assets/burger1.jpg";
-import '../../styles/maps.scss'
+import React, { Component, useState,useEffect } from "react";
+import { useNavigate} from "react-router-dom";
+import Page1 from "../../assets/img1.jpg";
+import { GoogleMap, LoadScript,Circle, Marker } from '@react-google-maps/api';
+// import "./mapindex.js"
+import "../../styles/maps.scss";
+import axios from 'axios';
+ const Maps = () => {
+  let navigate=useNavigate();
+  const containerStyle = {
+    width: '100%',
+    height: '100%'
+  };
+  let link=`http://localhost:5000/user/showevent`
+  
+  const [data, setData] = useState('');
 
-const Maps = () => {
+  // useEffect(()=>{
+
+  //   fetch(link,{
+  //     headers:{
+  //       "Authorization":"Bearer"+localStorage.getItem("jwt")
+  //     }
+  //   }).then(res=>res.json())
+  //   .then(result=>{
+  //     if(!(result.success)){
+        
+  //       navigate("/signin");
+  //     }
+  //     setData(result.data)
+  //     console.log(data)
+
+      
+  //   })
+  // },[])
   
 
 

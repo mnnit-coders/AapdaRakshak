@@ -15,6 +15,7 @@ import Textarea from '@mui/joy/Textarea';
 import { Typography } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import { Data } from '@react-google-maps/api';
 
 
 function srcset(image, size, rows = 1, cols = 1) {
@@ -28,33 +29,28 @@ function srcset(image, size, rows = 1, cols = 1) {
 
 
 export default function Popup({heading,data,att}) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
-  const [a,setA] = useState(data[0].a);
-  const [b,setB] = useState(data[0].b);
-  const [c,setC] = useState(data[0].c);
-  const [d,setD] = useState(data[0].d);
-  const [desc,setDesc] = useState(data[0].desc);
-  const [itemImg,setItemImg] = useState(data[0].img);
+  let dataArr = Object.values(data);
+
+  const[attribute,setAttribute]= useState(att);
+  const[arr,setArr] = useState(dataArr);
 
 console.log(data);
   useEffect(()=>{
     
-    setA(data[0].a)
-    setB(data[0].b)
-    setC(data[0].c)
-    setD(data[0].d)
-    setDesc(data[0].desc)
-    setItemImg(data[0].img)
-
-
-    console.log(a)
-    console.log(itemImg)
+    setArr(dataArr);
+  
+   
   },[data])
 
-  console.log(a)
-  console.log(b)
-  console.log(itemImg)
+  const changeArr = (e,index) => {
+    let s = e.target.value;
+    let newArr = [...arr];
+    newArr[index] = s;
+    setArr(newArr);
+  };
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -94,9 +90,19 @@ console.log(data);
 
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button> */}
+      <button  style={{width:"70vw",border:"none",background:"none" ,textAlign:'left'}} variant="outlined" onClick={handleClickOpen}>
+      <div className='left-child' >
+      {
+        arr.map((item,index) => (
+        index<3?<>
+         <h3> {item}</h3> 
+        </>:''
+        
+      ))
+      }
+   
+      </div>
+      </button>
       <Dialog  open={open}
         onClose={handleClose}
         scroll={'paper'}
@@ -116,14 +122,22 @@ maxWidth='md'>
           {heading}
         </Typography>
       <CardContent>
-      <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'10px'}}> <Typography style={{flex:1}}> {att[0].a} </Typography> <TextField style={{flex:5}} value={a} onChange={(e)=>setA(e.target.value)} id="outlined-basic" label="" variant="outlined" /></div>
-      <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'10px'}}> <Typography style={{flex:1}}> {att[0].b} </Typography> <TextField style={{flex:5}} value={b} onChange={(e)=>setB(e.target.value)} id="outlined-basic" label="" variant="outlined" /></div>
-      <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'10px'}}> <Typography style={{flex:1}}> {att[0].c} </Typography> <TextField style={{flex:5}} value={c} onChange={(e)=>setC(e.target.value)} id="outlined-basic" label="" variant="outlined" /></div>
-      <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'10px'}}> <Typography style={{flex:1}}> {att[0].d} </Typography> <TextField style={{flex:5}} value={d} onChange={(e)=>setD(e.target.value)} id="outlined-basic" label="" variant="outlined" /></div>
-      <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'10px'}}> <Typography style={{flex:1}}> Description </Typography> <Textarea style={{flex:5}} value={desc} onChange={(e)=>setDesc(e.target.value)} id="outlined-basic" label="" variant="outlined" minRows={2} maxRows={5} /></div>
+    
+    {
+     
+      arr.slice(0,arr.length-1).map((item,index) => (
+        <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'10px'}}> <Typography style={{flex:1}}> {att[index]} </Typography> <TextField style={{flex:5}} value={arr[index]} onChange={(e)=>changeArr(e.target.value)} id="outlined-basic" label="" variant="outlined" /></div>
+        
+      ))
+      
+    }
+        
+     
+      
       <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'10px'}}> <Typography style={{flex:1}}> Supporting Documents </Typography> 
       <ImageList sx={{ width: 500, height: 450 }} cols={1} >
-      {itemImg.map((item) => (
+      {
+        arr[arr.length-1].map((item) => (
         <ImageListItem key={item}>
           <img
             src={`${item}?w=164&h=164&fit=crop&auto=format`}
@@ -132,9 +146,14 @@ maxWidth='md'>
             loading="lazy"
           />
         </ImageListItem>
-      ))}
+      ))
+        
+      }
     </ImageList>
 </div>
+      
+      
+      
       </CardContent>
 
       
@@ -142,10 +161,7 @@ maxWidth='md'>
     </Card>
           </DialogContentText>
         </DialogContent>
-      
-      
 
-       
         <DialogActions>
           <Button color='error' onClick={handleReject} variant="contained">Reject</Button>
           <Button color='success' onClick={handleAccept} variant="contained">Accept</Button>
@@ -154,35 +170,3 @@ maxWidth='md'>
     </div>
   );
 }
-
-const itemData = [
-    
-    {
-      img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-      title: 'Burger',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-      title: 'Camera',
-    },
-    
-    
-    {
-      img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-      title: 'Basketball',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-      title: 'Fern',
-    },
-    
-    {
-      img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-      title: 'Tomato basil',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-      title: 'Sea star',
-    },
-    
-  ];
