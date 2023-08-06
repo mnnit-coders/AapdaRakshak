@@ -1,11 +1,22 @@
 const express=require('express')
-const { adminalertcontroller, getalerts } = require('../controllers/adminalerts.controller')
-const {validation}=require('../../user/helper/checklogin')
+const { createadminalert, getalerts,updateadminalert, deletealert} = require('../controllers/adminalerts.controller')
+const {validation}=require('../auth/checklogin')
 
 const adminalertroute=express.Router()
 
 adminalertroute
 .route('/createadminalert')
-.post(validation,adminalertcontroller)
+.post(validation,createadminalert)
 
+adminalertroute
+.route('/getalerts')
+.post(validation,getalerts)
+
+adminalertroute
+.route('/updatealert')
+.post(validation,updateadminalert)
+
+adminalertroute
+.route('/deletealert')
+.post(validation,deletealert)
 module.exports={adminalertroute}

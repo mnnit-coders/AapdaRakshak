@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import {motion} from "framer-motion"
 import swal from 'sweetalert'
 import useRazorpay from "react-razorpay";
@@ -80,7 +80,6 @@ const DonationCard = ({extraData,itemNum,imagesrc,price,title,handler,delay=0}) 
     }
   }
   return (
-    <>
     <motion.div
     className="menuCard"
     initial={{
@@ -99,31 +98,9 @@ const DonationCard = ({extraData,itemNum,imagesrc,price,title,handler,delay=0}) 
         <main>
             <img src={imagesrc} alt={itemNum}></img>
             <p>{title}</p>
-            <button style={{width:"22vh"}} onClick={handlesubmit}>Donate Now</button>
+            <button style={{width:"22vh"}}>Donate Now</button>
         </main>
     </motion.div>
-     <Dialog open={open} >
-     <DialogTitle>Donate amount</DialogTitle>
-     <DialogContent>
-       <DialogContentText>
-       Enter the amount you want to donate 
-       </DialogContentText>
-       <TextField
-         autoFocus
-         margin="normal"
-         id="name"
-         label="Enter Amount"
-         type="NUMBER"
-         fullWidth
-         variant="outlined"
-       />
-     </DialogContent>
-     <DialogActions>
-       <Button onClick={handleClose}>Cancel</Button>
-       <Button onClick={handleorder}>Submit</Button>
-     </DialogActions>
-   </Dialog>
-   </>
   )
 }
 

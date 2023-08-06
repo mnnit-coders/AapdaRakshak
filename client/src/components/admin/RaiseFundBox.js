@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import Popup from './Popup';
+import React from 'react'
 
 function RaiseFundBox() {
 

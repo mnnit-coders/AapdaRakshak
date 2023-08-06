@@ -35,56 +35,6 @@ import axios from 'axios';
   // },[])
   
 
-  
-  
-  // const center1 = [
-  //   {
-  //     lat: 25.4930,
-  //     lng: 81.8607,
-  //     radius:50,
-  //     color:"blue"
-  //   },
-  //   {
-  //     lat: 25.4984,
-  //     lng: 81.8677,
-  //     radius:200,
-  //     color:"red"
-  //   },
-  //   {
-  //     lat: 25.4904,
-  //     lng: 81.8697,
-  //     radius:100,
-  //     color:"yellow"
-  //   }
-  // ];
-
-  // const circleOptions = {
-  //   strokeColor: "#FF0000",
-  //   strokeOpacity: 0.8,
-  //   strokeWeight: 2,
-  //   fillColor: "#FF0000",
-  //   fillOpacity: 0.35,
-  //   center: center,
-  //   radius: 1000 // in meters
-  // };
-  // const place= 
-  //   {
-  //     id: 1,
-  //     name: "Park Slope",
-  //     latitude: "40.6710729",
-  //     longitude: "-73.9988001",
-  //     circle: {
-  //       radius: 3000,
-  //       options: {
-  //         strokeColor: "#ff0000"
-  //       }
-  //     }
-  //   };
-
-  const center={
-    lat: data && data[0].cordinate.x,
-    lng:data &&  data[0].cordinate.y
-  }
 
   return (
     <div className='maps' >
@@ -93,7 +43,7 @@ import axios from 'axios';
       <ul className='list'>
         <li style={{color:'brown'}}>Earthquake</li>
         <li style={{color:'purple'}}>Tsunami</li>
-        <li style={{color:'blue'}}>Flood</li>
+        <li style={{color:'blue'}}>Floor</li>
         <li style={{color:'red'}}>Fire</li>
         <li style={{color:'green'}}>drought</li>
         <li style={{color:'chocolate'}}>landslide</li>
@@ -101,101 +51,15 @@ import axios from 'axios';
         <li style={{color:'darkgoldenrod'}}>tornado</li>
       </ul>  
     </div>
-      <div className='second-div'> 
-        
-          <LoadScript
-          googleMapsApiKey="AIzaSyB3dJ2rmgWK24iGmIDsNJBf9I9x2_m_-X8"
-        >
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={18}
-          >
-          <>
-          
-          {data && data.map((c)=>(
-                <>  
-                
-                  <Marker
-                    position={{ lat: c.cordinate.x, lng: c.cordinate.y }}
-                    title="hello"
-                  />
-                  <Circle
-                    center={{  lat: c.cordinate.x, lng: c.cordinate.y  }}
-                    radius={c.radius} // radius in meters
-                    options={{
-                      strokeColor: "blue",
-                     strokeOpacity: 0.8,
-                      strokeWeight: 2,
-                     fillColor: "blue",
-                      fillOpacity: 0.35,
-                  }}
-                  />
-                </> 
-              ))}     
-        
-          </> 
-          
-
-         </GoogleMap>
-        </LoadScript>
-      </div>
+    <div className='second-div'> 
+    <img src={Page1} alt="Logo" />
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3dJ2rmgWK24iGmIDsNJBf9I9x2_m_-X8&callback=initMap&v=weekly"
+      defer
+    ></script>
     </div>
-  ) 
+    </div>
+  )
 } 
 
 export default Maps
-
-
-// {center1 && center1.map((c)=>(
-//               <>
-//                 <Marker
-//                   position={{ lat: c.lat, lng: c.lng }}
-//                   title="Your marker title"
-//                 />
-//                 <Circle
-//                   center={{ lat: c.lat, lng: c.lng }}
-//                   radius={c.radius} // radius in meters
-//                   options={{
-//                     strokeColor: "blue",
-//                     strokeOpacity: 0.8,
-//                     strokeWeight: 2,
-//                     fillColor: "blue",
-//                     fillOpacity: 0.35,
-//                 }}
-//                 />
-//               </>
-//             ))} 
-
-
-
-                // <Circle
-                //   center={{ lat: center.lat, lng: center.lng }}
-                //   radius={c.radius} // radius in meters
-                //   options={{
-                //     strokeColor: "blue",
-                //     strokeOpacity: 0.8,
-                //     strokeWeight: 2,
-                //     fillColor: "blue",
-                //     fillOpacity: 0.35,
-                // }}
-                // />
-
-
-                // {center && (
-                //   <Marker
-                //     position={{ lat: center.lat, lng: center.lng }}
-                //     title="Your marker title"
-                //   />
-                // )}   
-                // <Circle
-                //         center={{ lat: center.lat, lng: center.lng }}
-                //         radius={100} // radius in meters
-                //         options={{
-                //           strokeColor: "blue",
-                //           strokeOpacity: 0.8,
-                //           strokeWeight: 2,
-                //           fillColor: "blue",
-                //           fillOpacity: 0.10,
-                //       }}
-                //       />

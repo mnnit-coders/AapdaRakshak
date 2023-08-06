@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Popup from './Popup';
+import React from 'react'
+
 function VolunteerBox() {
   const [show,setShow] = useState(true);
   const [data,setData] = useState([

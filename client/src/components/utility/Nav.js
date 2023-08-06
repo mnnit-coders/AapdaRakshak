@@ -50,7 +50,6 @@ function Nav() {
                         <li><a href="/maps">Maps</a></li>
                         <li><a href="/donation">Donation</a></li>
                         <li><a href="/volunteerform">Volunteer</a></li>
-                        <li><a href="/raisefund">Raise Fund</a></li>
                     </ul>
                 </div>
                 <div className="nav-right">
@@ -105,8 +104,7 @@ function Nav() {
                         <MenuItem onClick={(e)=>handleNav('/')}><p>Home</p></MenuItem>
                         <MenuItem onClick={(e)=>handleNav('/maps')}><p>Maps</p></MenuItem>
                         <MenuItem onClick={(e)=>handleNav('/donation')}><p>Donation</p></MenuItem>
-                        <MenuItem onClick={(e)=>handleNav('/volunteerform')}><p>Volunteer</p></MenuItem>
-                        <MenuItem onClick={(e)=>handleNav('/raisefund')}><p>Raise Fund</p></MenuItem>
+                        <MenuItem onClick={(e)=>handleNav('/volunteerform')}><p>Contact</p></MenuItem>
                         <MenuItem>
                             <IconButton
                                 size="large"
