@@ -15,24 +15,24 @@ import axios from 'axios';
   
   const [data, setData] = useState('');
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    fetch(link,{
-      headers:{
-        "Authorization":"Bearer"+localStorage.getItem("jwt")
-      }
-    }).then(res=>res.json())
-    .then(result=>{
-      if(!(result.success)){
+  //   fetch(link,{
+  //     headers:{
+  //       "Authorization":"Bearer"+localStorage.getItem("jwt")
+  //     }
+  //   }).then(res=>res.json())
+  //   .then(result=>{
+  //     if(!(result.success)){
         
-        navigate("/signin");
-      }
-      setData(result.data)
-      console.log(data)
+  //       navigate("/signin");
+  //     }
+  //     setData(result.data)
+  //     console.log(data)
 
       
-    })
-  },[])
+  //   })
+  // },[])
   
 
   

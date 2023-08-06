@@ -17,6 +17,7 @@ async function createordercontroller(req,res){
                 })
             }
             else{
+                console.log(order.id)
                 res.status(200).json({id:order.id,flag:true});
             }
         })

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import '../../styles/admin.css'
 import Avatar from '@mui/material/Avatar';
 import dp from '../../assets/img1.jpg'
-import AlertBox from './AlertBox';
+import AlertReviewBox from './AlertReviewBox';
+import AlertCreateBox from './AlertCreateBox';
 import RaiseFundBox from './RaiseFundBox'
 import VolunteerBox from './VolunteerBox'
 
 function Admin() {
 
-  const [current,setCurrent] = useState('alert');
+  const [current,setCurrent] = useState('alertCreate');
 
   useEffect(()=>{
     handleBack();
@@ -26,8 +27,8 @@ function Admin() {
   return (
     <div className='admin-container'>
       <div className='admin-left'>
-        
-          <li id='alert' onClick={(e)=>handleCurrent('alert')}>Review Alert requests</li>
+          <li id='alertCreate' onClick={(e)=>handleCurrent('alertCreate')}>Create New Alert</li>
+          <li id='alertReview' onClick={(e)=>handleCurrent('alertReview')}>Review Alerts</li>
           <li id='raise' onClick={(e)=>handleCurrent('raise')}>Review Raising Funds</li>
           <li id='volunteer' onClick={(e)=>handleCurrent('volunteer')}>Review Volunteer Application</li>
          
@@ -44,14 +45,16 @@ function Admin() {
             </div>
             {(() => {
         switch (current) {
-          case 'alert':
-            return <AlertBox></AlertBox>
+          case 'alertCreate':
+            return <AlertCreateBox></AlertCreateBox>
+          case 'alertReview':
+            return <AlertReviewBox></AlertReviewBox>
           case 'raise':
             return <RaiseFundBox/>
           case 'volunteer':
             return <VolunteerBox />
           default:
-            return <AlertBox></AlertBox>
+            return <AlertCreateBox></AlertCreateBox>
         }
       })()}
       </div>

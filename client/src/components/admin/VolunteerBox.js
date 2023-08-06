@@ -1,25 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import Popup from './Popup';
 function VolunteerBox() {
-  const [show,setShow] = useState(false);
+  const [show,setShow] = useState(true);
   const [data,setData] = useState([
     {
-      a:'Kuldeep',
-      b:8385907,
-      c:'food supply',
-      d:'allhabad',
-      desc:'desc',
+      name:'Kuldeep',
+      type:'food distribution',
+      location:'delhi',
+      contact:1242354,
+      address:'allhabad',
+      description:'sbko khana milega',
+      img:['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHXA14c0roOUnYcw-bcaFiof0Lezw6fzi-_w&usqp=CAU','https://cdn1.i-scmp.com/sites/default/files/styles/1200x800/public/images/methode/2018/12/23/8adf4e08-0649-11e9-b0d2-cf4a0f50367e_image_hires_232313.JPG?itok=dGr0h6ww&v=1545578598','https://images.unsplash.com/photo-1522770179533-24471fcdba45']
+    },
+    {
+      name:'Rahul',
+      type:'water distribution',
+      location:'chennai',
+      contact:5342354,
+      address:'uk',
+      description:'sbko pani milega',
       img:['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHXA14c0roOUnYcw-bcaFiof0Lezw6fzi-_w&usqp=CAU','https://cdn1.i-scmp.com/sites/default/files/styles/1200x800/public/images/methode/2018/12/23/8adf4e08-0649-11e9-b0d2-cf4a0f50367e_image_hires_232313.JPG?itok=dGr0h6ww&v=1545578598','https://images.unsplash.com/photo-1522770179533-24471fcdba45']
     }
   ])
 
-  const [att,setAtt] = useState([
-    {
-      a:'Name',
-      b:'Contact Number',
-      c:'Type',
-      d:'Location',
-    }
+  const [att,setAtt] = useState([ 
+      'Name',
+      'Type',
+      'Location of volunteering',
+      'Contact Number',
+      'Address',
+      'description',
+      'Supporting Documents' 
   ])
 
 
@@ -39,22 +50,16 @@ function VolunteerBox() {
 
   <div className='main-box'>
     
+    
     {
-
-      <div onClick={handlePopup} className='box-child'>
-      <div className='left-child'>
-        <h3>Name</h3>
-        <h3>Contact Number</h3>
-        <h3>Type of Volunteering</h3>
-        <h3>Location</h3>
-      </div>
-      <div className='right-child'>
-        <h3>username</h3>
-        <h3>Email@gmail.com</h3>
-        <h3>phonenumber</h3>
-        {show && <Popup heading={'Volunteer Application'} data={data} att={att}/>}
-      </div>
+data.map((obj)=>(
+  <div onClick={handlePopup} className='box-child'>
+  {show && <Popup heading={'Volunteer Application'} data={obj} att={att}/>}
+     
     </div>
+))
+
+      
     }
     
     
