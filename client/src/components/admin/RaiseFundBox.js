@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React,{useState} from 'react'
+import Popup from './PopupNew';
 function RaiseFundBox() {
 
   const [show,setShow] = useState(true);
