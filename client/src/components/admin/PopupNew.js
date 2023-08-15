@@ -16,7 +16,9 @@ import { Typography } from '@mui/material';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { Data } from '@react-google-maps/api';
-
+import axios from 'axios'
+import { Cookies } from 'react-cookie';
+const url="http://localhost:5000/admin"
 
 function srcset(image, size, rows = 1, cols = 1) {
   return {
@@ -30,13 +32,12 @@ function srcset(image, size, rows = 1, cols = 1) {
 
 export default function Popup({heading,data,att}) {
   const [open, setOpen] = useState(false);
-
+  const cookie=new Cookies()
   let dataArr = Object.values(data);
-
+  const [isnew,setIsnew] = useState(0);
   const[attribute,setAttribute]= useState(att);
   const[arr,setArr] = useState(dataArr);
 
-console.log(data);
   useEffect(()=>{
     
     setArr(dataArr);
@@ -53,6 +54,7 @@ console.log(data);
 
 
   const handleClickOpen = () => {
+    arr[0].length ? setIsnew(0) : setIsnew(1);
     setOpen(true);
   };
 
@@ -65,6 +67,21 @@ console.log(data);
   }
 
   const handleAccept = ()  =>{
+    setOpen(false);
+  }
+  const handleCreate = async ()  =>{
+console.log("handl change ")
+    try {
+      let token=cookie.get('token')
+      console.log(token);
+      console.log(arr)
+      // const result =await axios.post(`${url}/createadminalert`,{
+
+      // })
+    } catch (error) {
+      console.log(error.message);
+    }
+
     setOpen(false);
   }
 
@@ -120,7 +137,7 @@ console.log(data);
 fullWidth={true}
 maxWidth='md'>
 
-<DialogContent dividers={true}>
+      <DialogContent dividers={true}>
           <DialogContentText
             id="scroll-dialog-description"
             ref={descriptionElementRef}
@@ -135,8 +152,7 @@ maxWidth='md'>
     {
      
       arr.map((item,index) => (
-        <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'10px'}}> <Typography style={{flex:1}}> {att[index]} </Typography> <TextField style={{flex:5}} value={arr[index]} onChange={(e)=>changeArr(e.target.value)} id="outlined-basic" label="" variant="outlined" /></div>
-        
+        <div style={{display:'flex',alignItems:'center',gap:'10px',margin:'10px'}}> <Typography style={{flex:1}}> {att[index]} </Typography> <TextField style={{flex:5}} value={arr[index]} onChange={(e)=>changeArr(e,index)} id="outlined-basic" label="" variant="outlined" /></div>
       ))
       
     }
@@ -152,8 +168,21 @@ maxWidth='md'>
         </DialogContent>
 
         <DialogActions>
+
+        {
+          isnew==0?
+          <>
           <Button color='error' onClick={handleReject} variant="contained">Reject</Button>
           <Button color='success' onClick={handleAccept} variant="contained">Accept</Button>
+          </>:
+          <>
+          <Button color='error' onClick={handleReject} variant="contained">Cancel</Button>
+          <Button color='success' onClick={handleCreate} variant="contained">Create</Button>
+          </>
+        }
+
+          
+          {/* <Button color='success' onClick={handleAccept} variant="contained">Accept</Button> */}
         </DialogActions>
       </Dialog>
     </div>
